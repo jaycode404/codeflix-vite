@@ -1,0 +1,44 @@
+/* Estilos para las flechas personalizadas */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  z-index: 9;
+}
+/* 
+.slick-track::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgb(37, 211, 145);
+  z-index: -1;
+  opacity: .3;
+} */
+.slick-track {
+  position: relative;
+  padding: 1.5rem 0;
+  height: 16rem;
+}
+
+.prev-arrow {
+  left: 0px; /* Alinea la flecha izquierda a 10px del borde izquierdo */
+}
+
+.next-arrow {
+  right: 2px; /* Alinea la flecha derecha a 10px del borde derecho */
+}
+
+.prev-arrow:hover,
+.next-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
