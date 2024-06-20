@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+// src/components/VideoForm.js
 
-import Swal from "sweetalert2"; // Importa SweetAlert2
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import { ref, push, set } from "firebase/database"; // Agrega 'set' para actualizar con un ID personalizado
+import { db } from "../helpers/firebase";
 
 function VideoForm() {
   const [url, setUrl] = useState("");
   const [descripcion, setDescripcion] = useState("");
-  const [categoria, setCategoria] = useState("");
+  const [categoria, setCategoria] = useState("FrontEnd");
   const [titulo, setTitulo] = useState("");
 
   const extractYouTubeVideoId = (url) => {
@@ -13,6 +16,10 @@ function VideoForm() {
       /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(regExp);
     return match ? match[1] : null;
+  };
+
+  const generarIdUnico = () => {
+    return '_' + Math.random().toString(36).substr(2, 9); // Genera un ID único al estilo Firebase
   };
 
   const handleSubmit = (e) => {
@@ -27,35 +34,32 @@ function VideoForm() {
 
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
+    const id = generarIdUnico(); // Genera un ID único para el video
+
     const videoData = {
-      url: embedUrl, // Usar la URL de embed en lugar de la URL original
+      id,
+      url: embedUrl,
       descripcion,
       categoria,
       titulo,
     };
 
-    fetch(
-      "https://raw.githubusercontent.com/jaycode404/api_jayflix/main/db.json",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(videoData),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Video enviado con éxito:", data);
-        // Mostrar Sweet Alert
+    const videosRef = ref(db, 'videos/' + id); // Usa el ID como parte del path
+    set(videosRef, videoData)
+      .then(() => {
         Swal.fire({
           icon: "success",
           title: "Enviado Con Éxito",
           text: "El video se ha enviado con éxito.",
         }).then(() => {
-          // Redireccionar a la página de inicio después de hacer clic en "OK" en Sweet Alert
-          window.location.href = "/"; // Cambia la URL de redirección según tu configuración
+          window.location.href = "/"; // Redirige a la página de inicio después del éxito
         });
+
+        // Limpia los campos del formulario después de enviar
+        setUrl("");
+        setDescripcion("");
+        setCategoria("FrontEnd");
+        setTitulo("");
       })
       .catch((error) => {
         console.error("Error al enviar el video:", error);
@@ -64,7 +68,7 @@ function VideoForm() {
 
   return (
     <section>
-      <h2 style={{textAlign: 'center'}}>Nuevo Video</h2>
+      <h2 style={{ textAlign: "center" }}>Nuevo Video</h2>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <div className="styled-field-text">
@@ -72,7 +76,6 @@ function VideoForm() {
             <input
               type="text"
               value={url}
-              // placeholder="https://www.youtube.com/watch?v=rtq2dNEyhCU"
               onChange={(e) => setUrl(e.target.value)}
               required
             />
@@ -87,10 +90,7 @@ function VideoForm() {
               required
             />
           </div>
-          <div
-            className="form-control"
-            style={{ width: "100%", margin: "1rem 0" }}
-          >
+          <div className="form-control" style={{ width: "100%", margin: "1rem 0" }}>
             <label>Categoría:</label>
             <select
               value={categoria}
