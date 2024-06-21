@@ -1,12 +1,16 @@
-import React from "react";
-import Banner from "./Banner";
-import Seccion from "./Seccion";
-export default function Home() {
+import React from 'react';
+import Banner from './Banner';
+import VideoSlider from './VideoSlider';
+
+function Home({ categorias, videos }) {
   return (
     <>
       <Banner />
-      <Seccion />
-      
+      {categorias.map((categoria) => (
+        <VideoSlider key={categoria} categoria={categoria} videos={videos.filter(video => video.categoria === categoria)} />
+      ))}
     </>
   );
 }
+
+export default Home;

@@ -1,11 +1,9 @@
-import React from "react";
-import { extractYouTubeVideoId } from "../helpers/utils";
-
 function VideoCard({ id, titulo, descripcion, url, categoria }) {
-  const videoId = url.split("/").pop(); // Obtiene el último segmento de la URL
+  // Verificar si url está definida antes de usarla
+  const videoId = url ? url.split("/").pop() : null; // Obtener el último segmento de la URL si url está definida
 
-  // Construir la URL de la imagen del video (thumbnail)
-  const imageUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+  // Construir la URL de la imagen del video (thumbnail) si videoId está definido
+  const imageUrl = videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : '';
 
   return (
     <div className="video-card">
@@ -26,4 +24,5 @@ function VideoCard({ id, titulo, descripcion, url, categoria }) {
   );
 }
 
-export default VideoCard;
+
+export default VideoCard

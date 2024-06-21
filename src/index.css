@@ -46,10 +46,14 @@ select {
   font-family: var(--body-font);
 }
 input {
+  font-family: var(--body-font);
   padding: 0.3rem;
 }
 textarea {
   padding: 0.3rem;
+}
+button{
+  font-family: var(--body-font);
 }
 
 h1,

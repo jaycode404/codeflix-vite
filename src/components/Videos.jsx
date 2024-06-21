@@ -3,22 +3,9 @@ import Swal from "sweetalert2";
 import VideoCard from "./VideoCard";
 import { keyBy } from "lodash";
 
-function Videos() {
-  const [videos, setVideos] = useState([]);
-  useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/jaycode404/api_jayflix/main/db.json"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const videosArray = Object.values(data.videos);
-
-        setVideos(videosArray);
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos:", error);
-      });
-  }, []);
+function Videos({categoria, videos}) {
+  
+  
 
   const handleDeleteVideo = (videoID) => {
     // Aquí puedes agregar la lógica para eliminar un video si tu API lo admite
