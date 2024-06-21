@@ -6,12 +6,10 @@ export function obtenerVideos() {
   return get(videosRef).then((snapshot) => {
     if (snapshot.exists()) {
       const videosData = snapshot.val();
-      if (!videosData) return []; // Si no hay datos, devolver un array vacío
-      
-      // Convertir el objeto de videos en un array con id incluido
+      if (!videosData) return []; 
       const videosArray = Object.keys(videosData).map(key => ({
-        id: key, // Usar la clave como id único
-        ...videosData[key] // Resto de los datos del video
+        id: key, 
+        ...videosData[key]
       }));
       
       return videosArray;
