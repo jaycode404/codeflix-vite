@@ -41,7 +41,7 @@ function Videos({ categoria, videos }) {
       <div className="videos-container">
         {videos.map(({ id, titulo, descripcion, url, categoria }) => (
           <VideoCard
-            key={id} // Asegúrate de usar key prop en elementos de lista
+            key={id}
             id={id}
             titulo={titulo}
             descripcion={descripcion}

@@ -11,6 +11,7 @@ import Banner from "./components/Banner";
 import Videos from "./components/Videos";
 import AcercaDe from "./components/AcercaDe";
 import Navbar from "./components/Navbar";
+import { NavList } from "./components/Navbar";
 import NuevoVideo from "./components/NuevoVideo";
 import VideoSlider from "./components/VideoSlider";
 import Login from "./components/Login";
@@ -55,27 +56,30 @@ function App() {
   };
 
   return (
-    <Router>
-      <Navbar
-        user={user}
-        handleLogout={handleLogout}
-        className="componente__uno"
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home categorias={categorias} videos={videos} />}
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/videos" element={<Videos videos={videos} />} />
-        <Route
-          path="/nuevo-video"
-          element={user ? <NuevoVideo /> : <Navigate to="/login" />}
-        />
-        <Route path="/acerca-de" element={<AcercaDe />} />
-      </Routes>
-      <Footer/>
-    </Router>
+    <div>
+      <div className="container">
+        <Router>
+          <Navbar
+            user={user}
+            handleLogout={handleLogout}
+            className="componente__uno"
+          />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home categorias={categorias} videos={videos} />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/videos" element={<Videos videos={videos} />} />
+            <Route
+              path="/nuevo-video"
+              element={user ? <NuevoVideo /> : <Navigate to="/login" />}
+            />
+            <Route path="/acerca-de" element={<AcercaDe />} />
+          </Routes>
+        </Router>
+      </div>
+    </div>
   );
 }
 
@@ -83,7 +87,6 @@ function Home({ categorias, videos }) {
   return (
     <div className="">
       <Banner />
-
       {categorias.map((categoria) => (
         <VideoSlider
           key={categoria}
@@ -91,7 +94,6 @@ function Home({ categorias, videos }) {
           videos={videos.filter((video) => video.categoria === categoria)}
         />
       ))}
-      
     </div>
   );
 }
