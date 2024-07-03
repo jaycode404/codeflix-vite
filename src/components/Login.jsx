@@ -22,7 +22,7 @@ function Login() {
 
   return (
     <section>
-      <h2 style={{textAlign: 'center'}}>Login</h2>
+      <h2 className="section-title" style={{textAlign: 'center'}}>Login</h2>
       <div className="form-container">
         <form onSubmit={handleLogin}>
           <input

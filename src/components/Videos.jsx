@@ -36,7 +36,7 @@ function Videos({ categoria, videos }) {
 
   return (
     <section className="container">
-      <h2>Todos los Videos</h2>
+      <h2 className="section-title">Todos los Videos</h2>
 
       <div className="videos-container">
         {videos.map(({ id, titulo, descripcion, url, categoria }) => (

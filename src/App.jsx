@@ -74,13 +74,14 @@ function App() {
         />
         <Route path="/acerca-de" element={<AcercaDe />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 }
 
 function Home({ categorias, videos }) {
   return (
-    <div className="container">
+    <div className="">
       <Banner />
 
       {categorias.map((categoria) => (
@@ -90,6 +91,7 @@ function Home({ categorias, videos }) {
           videos={videos.filter((video) => video.categoria === categoria)}
         />
       ))}
+      
     </div>
   );
 }
