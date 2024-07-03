@@ -80,7 +80,7 @@ function App() {
 
 function Home({ categorias, videos }) {
   return (
-    <>
+    <div className="container">
       <Banner />
 
       {categorias.map((categoria) => (
@@ -90,8 +90,7 @@ function Home({ categorias, videos }) {
           videos={videos.filter((video) => video.categoria === categoria)}
         />
       ))}
-      <Footer />
-    </>
+    </div>
   );
 }
 
