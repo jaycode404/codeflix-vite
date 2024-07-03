@@ -35,9 +35,9 @@ export default function VideoSlider({ categoria, videos }) {
     autoplay: true,
     autoplaySpeed: 3000,
     initialSlide: 0,
-    centerMode: videos.length < 3,
-    centerPadding: "50px",
-    variableWidth: videos.length < 3,
+    centerMode: numVideos > 1 && numVideos < 3,
+    centerPadding: numVideos > 1 && numVideos < 3 ? "50px" : "0px",
+    variableWidth: numVideos > 1 && numVideos < 3,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     rtl: rtl,
@@ -45,16 +45,16 @@ export default function VideoSlider({ categoria, videos }) {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: Math.min(3, numVideos),
           slidesToScroll: 3,
-          infinite: true,
+          infinite: lengthAllow,
           dots: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: Math.min(2, numVideos),
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -62,8 +62,17 @@ export default function VideoSlider({ categoria, videos }) {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: numVideos > 2 ? 2 : 1,
+          slidesToScroll: numVideos > 2 ? 2 : 1,
+          initialSlide: 1,
+        },
+      },
+      {
+        breakpoint: 320,
+        settings: {
+          slidesToShow: numVideos > 2 ? 2 : 1,
+          slidesToScroll: numVideos > 2 ? 2 : 1,
+          initialSlide: 1,
         },
       },
     ],
@@ -82,7 +91,7 @@ export default function VideoSlider({ categoria, videos }) {
   ));
 
   return (
-    <div className="slider-container">
+    <div className="slider-container container">
       <h2 className="categoria-title">{categoria}</h2>
       <Slider {...settings}>{videoCards}</Slider>
     </div>

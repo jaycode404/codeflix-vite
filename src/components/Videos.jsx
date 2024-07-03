@@ -3,10 +3,7 @@ import Swal from "sweetalert2";
 import VideoCard from "./VideoCard";
 import { keyBy } from "lodash";
 
-function Videos({categoria, videos}) {
-  
-  
-
+function Videos({ categoria, videos }) {
   const handleDeleteVideo = (videoID) => {
     // Aquí puedes agregar la lógica para eliminar un video si tu API lo admite
     // Por ejemplo:
@@ -38,7 +35,7 @@ function Videos({categoria, videos}) {
   };
 
   return (
-    <section>
+    <section className="container">
       <h2>Todos los Videos</h2>
 
       <div className="videos-container">

@@ -11,9 +11,9 @@ export default function Banner() {
     const imageUrl = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
   
   return (
-    <header className="banner-container">
+    <header className="banner-container container">
       <div className="banner-info">
-        <h2 className="banner-title">
+        <h2 className="banner-title ">
           El mejor contenido para <span>Coders</span>
         </h2>
       </div>

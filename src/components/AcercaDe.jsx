@@ -2,7 +2,7 @@ import React from "react";
 
 function AcercaDe() {
   return (
-    <section>
+    <section className="container">
       <h1>Qué es codeflix?</h1>
       <div className="acerca-container">
         <p className="acerca-text">

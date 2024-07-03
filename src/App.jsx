@@ -1,16 +1,22 @@
 // src/App.jsx
 
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Banner from './components/Banner';
-import Videos from './components/Videos';
-import AcercaDe from './components/AcercaDe';
-import Navbar from './components/Navbar';
-import NuevoVideo from './components/NuevoVideo';
-import VideoSlider from './components/VideoSlider';
-import Login from './components/Login';
-import { obtenerVideos } from './helpers/functions';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Banner from "./components/Banner";
+import Videos from "./components/Videos";
+import AcercaDe from "./components/AcercaDe";
+import Navbar from "./components/Navbar";
+import NuevoVideo from "./components/NuevoVideo";
+import VideoSlider from "./components/VideoSlider";
+import Login from "./components/Login";
+import { obtenerVideos } from "./helpers/functions";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import Footer from "./components/Footer";
 
 function App() {
   const [videos, setVideos] = useState([]);
@@ -18,9 +24,11 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    obtenerVideos().then(data => {
+    obtenerVideos().then((data) => {
       setVideos(data);
-      const categoriasUnicas = [...new Set(data.map((video) => video.categoria))];
+      const categoriasUnicas = [
+        ...new Set(data.map((video) => video.categoria)),
+      ];
       setCategorias(categoriasUnicas);
     });
 
@@ -42,18 +50,28 @@ function App() {
       await signOut(auth);
       setUser(null);
     } catch (error) {
-      console.error('Error al cerrar sesión:', error);
+      console.error("Error al cerrar sesión:", error);
     }
   };
 
   return (
     <Router>
-      <Navbar user={user} handleLogout={handleLogout} className='componente__uno' />
+      <Navbar
+        user={user}
+        handleLogout={handleLogout}
+        className="componente__uno"
+      />
       <Routes>
-        <Route path="/" element={<Home categorias={categorias} videos={videos} />} />
+        <Route
+          path="/"
+          element={<Home categorias={categorias} videos={videos} />}
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/videos" element={<Videos videos={videos}/>} />
-        <Route path="/nuevo-video" element={user ? <NuevoVideo /> : <Navigate to="/login" />} />
+        <Route path="/videos" element={<Videos videos={videos} />} />
+        <Route
+          path="/nuevo-video"
+          element={user ? <NuevoVideo /> : <Navigate to="/login" />}
+        />
         <Route path="/acerca-de" element={<AcercaDe />} />
       </Routes>
     </Router>
@@ -64,9 +82,15 @@ function Home({ categorias, videos }) {
   return (
     <>
       <Banner />
+
       {categorias.map((categoria) => (
-        <VideoSlider key={categoria} categoria={categoria} videos={videos.filter(video => video.categoria === categoria)} />
+        <VideoSlider
+          key={categoria}
+          categoria={categoria}
+          videos={videos.filter((video) => video.categoria === categoria)}
+        />
       ))}
+      <Footer />
     </>
   );
 }
