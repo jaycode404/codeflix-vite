@@ -124,7 +124,7 @@ a {
   }
   .banner-container {
     position: relative;
-    height: 60vh;
+    height: 50vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 4rem;
@@ -497,7 +497,7 @@ a {
   }
   .banner-container {
     position: relative;
-    height: 50vh;
+    height: 30vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
@@ -683,7 +683,7 @@ a {
   }
   .banner-container {
     position: relative;
-    height: 50vh;
+    height: 30vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 0;
