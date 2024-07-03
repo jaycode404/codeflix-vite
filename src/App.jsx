@@ -56,29 +56,27 @@ function App() {
   };
 
   return (
-    <div>
-      <div className="container">
-        <Router>
-          <Navbar
-            user={user}
-            handleLogout={handleLogout}
-            className="componente__uno"
+    <div className="container">
+      <Router>
+        <Navbar
+          user={user}
+          handleLogout={handleLogout}
+          className="componente__uno"
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={<Home categorias={categorias} videos={videos} />}
           />
-          <Routes>
-            <Route
-              path="/"
-              element={<Home categorias={categorias} videos={videos} />}
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/videos" element={<Videos videos={videos} />} />
-            <Route
-              path="/nuevo-video"
-              element={user ? <NuevoVideo /> : <Navigate to="/login" />}
-            />
-            <Route path="/acerca-de" element={<AcercaDe />} />
-          </Routes>
-        </Router>
-      </div>
+          <Route path="/login" element={<Login />} />
+          <Route path="/videos" element={<Videos videos={videos} />} />
+          <Route
+            path="/nuevo-video"
+            element={user ? <NuevoVideo /> : <Navigate to="/login" />}
+          />
+          <Route path="/acerca-de" element={<AcercaDe />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
