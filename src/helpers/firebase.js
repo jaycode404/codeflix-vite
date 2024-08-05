@@ -2,8 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { getAuth } from "firebase/auth"; // Importar Firebase Authentication
-
+import { getAuth } from "firebase/auth"; 
 const firebaseConfig = {
   apiKey: "AIzaSyDpsS4BwgmztchGFigi4tT2x_FNqlm_XhI",
   authDomain: "codeflix-vite.firebaseapp.com",
@@ -17,6 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const auth = getAuth(app); // Inicializar Firebase Authentication
+const auth = getAuth(app); 
 
-export { db, auth }; // Exportar auth junto con db
+export { db, auth };

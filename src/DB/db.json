@@ -1,0 +1,40 @@
+{
+    "videos": [
+      {
+        "id": 1,
+        "titulo": "Introduction to JavaScript",
+        "descripcion": "Learn the basics of JavaScript, the most popular programming language in web development.",
+        "url": "https://www.example.com/videos/intro-to-javascript",
+        "thumbnail": "https://www.example.com/thumbnails/intro-to-javascript.jpg"
+      },
+      {
+        "id": 2,
+        "titulo": "Understanding React Hooks",
+        "descripcion": "A deep dive into React Hooks and how they can be used to manage state and side effects in your React applications.",
+        "url": "https://www.example.com/videos/react-hooks",
+        "thumbnail": "https://www.example.com/thumbnails/react-hooks.jpg"
+      },
+      {
+        "id": 3,
+        "titulo": "CSS Grid Layout",
+        "descripcion": "Master the CSS Grid Layout module and create complex web layouts with ease.",
+        "url": "https://www.example.com/videos/css-grid",
+        "thumbnail": "https://www.example.com/thumbnails/css-grid.jpg"
+      },
+      {
+        "id": 4,
+        "titulo": "Advanced JavaScript",
+        "descripcion": "Take your JavaScript skills to the next level with this advanced tutorial.",
+        "url": "https://www.example.com/videos/advanced-javascript",
+        "thumbnail": "https://www.example.com/thumbnails/advanced-javascript.jpg"
+      },
+      {
+        "id": 5,
+        "titulo": "React State Management",
+        "descripcion": "Learn how to manage state in your React applications using various state management libraries.",
+        "url": "https://www.example.com/videos/react-state-management",
+        "thumbnail": "https://www.example.com/thumbnails/react-state-management.jpg"
+      }
+    ]
+  }
+  

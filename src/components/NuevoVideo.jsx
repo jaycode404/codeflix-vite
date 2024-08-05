@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { ref, push, set } from "firebase/database"; // Agrega 'set' para actualizar con un ID personalizado
+import { ref, push, set } from "firebase/database"; 
 import { db } from "../helpers/firebase";
 
 function VideoForm() {
@@ -34,7 +34,7 @@ function VideoForm() {
 
     const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
-    const id = generarIdUnico(); // Genera un ID único para el video
+    const id = generarIdUnico();
 
     const videoData = {
       id,
@@ -44,7 +44,7 @@ function VideoForm() {
       titulo,
     };
 
-    const videosRef = ref(db, 'videos/' + id); // Usa el ID como parte del path
+    const videosRef = ref(db, 'videos/' + id); 
     set(videosRef, videoData)
       .then(() => {
         Swal.fire({
@@ -52,10 +52,10 @@ function VideoForm() {
           title: "Enviado Con Éxito",
           text: "El video se ha enviado con éxito.",
         }).then(() => {
-          window.location.href = "/"; // Redirige a la página de inicio después del éxito
+          window.location.href = "/"; 
         });
 
-        // Limpia los campos del formulario después de enviar
+        
         setUrl("");
         setDescripcion("");
         setCategoria("FrontEnd");

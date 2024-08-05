@@ -75,6 +75,7 @@ function App() {
             element={user ? <NuevoVideo /> : <Navigate to="/login" />}
           />
           <Route path="/acerca-de" element={<AcercaDe />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
     </div>
